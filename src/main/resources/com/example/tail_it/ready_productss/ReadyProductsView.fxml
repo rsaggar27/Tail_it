@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="506.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tail_it.ready_products.ReadyProductController">
+   <children>
+      <AnchorPane blendMode="MULTIPLY" layoutX="219.0" layoutY="31.0" prefHeight="72.0" prefWidth="293.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="56.0" layoutY="19.0" text="Ready Products" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="270.0" layoutY="123.0" text="Worker Name">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="worker" layoutX="268.0" layoutY="141.0" onAction="#fetchOrders" prefHeight="26.0" prefWidth="195.0" />
+      <ListView fx:id="lstorderid" layoutX="36.0" layoutY="214.0" onMouseClicked="#doRecieve" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstdress" layoutX="260.0" layoutY="214.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstdod" layoutX="484.0" layoutY="214.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="233.0" layoutY="447.0" mnemonicParsing="false" onAction="#doRecieveAll" prefHeight="28.0" prefWidth="265.0" text="Recived All">
+         <font>
+            <Font name="Poppins Medium" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="36.0" layoutY="196.0" text="Order_id">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="260.0" layoutY="196.0" text="Dress">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="484.0" layoutY="196.0" text="Date of Delivery">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

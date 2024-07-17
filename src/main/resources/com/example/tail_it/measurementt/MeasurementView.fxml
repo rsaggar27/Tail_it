@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="637.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tail_it.measurement.MeasurementController">
+   <children>
+      <AnchorPane blendMode="MULTIPLY" layoutX="268.0" layoutY="28.0" prefHeight="72.0" prefWidth="293.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="64.0" layoutY="19.0" text="Measurement" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="mobile" layoutX="92.0" layoutY="142.0" prefHeight="26.0" prefWidth="435.0" />
+      <Label layoutX="93.0" layoutY="124.0" text="Mobile Number">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="184.0" text="Dress">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="dress" layoutX="93.0" layoutY="199.0" onMouseClicked="#fillWorkers" prefHeight="26.0" prefWidth="195.0" />
+      <DatePicker fx:id="dod" editable="false" layoutX="332.0" layoutY="199.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label layoutX="333.0" layoutY="184.0" prefHeight="17.0" prefWidth="99.0" text="Date of Delivery">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="246.0" text="Quantity">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="quantity" editable="true" layoutX="93.0" layoutY="263.0" prefHeight="26.0" prefWidth="195.0" />
+      <TextField fx:id="pprice" layoutX="338.0" layoutY="263.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label layoutX="339.0" layoutY="245.0" prefHeight="17.0" prefWidth="108.0" text="Price per Unit">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="bill" layoutX="93.0" layoutY="332.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label layoutX="94.0" layoutY="315.0" prefHeight="17.0" prefWidth="108.0" text="Total Bill">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="advpaid" layoutX="339.0" layoutY="332.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label layoutX="340.0" layoutY="315.0" prefHeight="17.0" prefWidth="108.0" text="Advance Paid">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="despic" layoutX="339.0" layoutY="384.0" mnemonicParsing="false" onAction="#doUpload" prefHeight="28.0" prefWidth="195.0" text="Upload the Design(if any)">
+         <font>
+            <Font name="Poppins Medium" size="13.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgPrev" fitHeight="150.0" fitWidth="136.0" layoutX="616.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+      <TextArea fx:id="measurements" layoutX="91.0" layoutY="484.0" prefHeight="110.0" prefWidth="448.0" />
+      <Label layoutX="92.0" layoutY="466.0" prefHeight="17.0" prefWidth="108.0" text="Measurements">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="368.0" text="Worker (to be assigned)">
+         <font>
+            <Font name="PP Telegraf Regular" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="worker" layoutX="93.0" layoutY="385.0" prefHeight="26.0" prefWidth="195.0" />
+      <Line endX="345.5" layoutX="191.0" layoutY="445.0" startX="-100.0" stroke="#686767" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" />
+      <Pane layoutX="601.0" layoutY="132.0" prefHeight="288.0" prefWidth="166.0" style="-fx-background-color: gray;">
+         <children>
+            <Button layoutX="25.0" layoutY="128.0" mnemonicParsing="false" onAction="#doSave" prefHeight="28.0" prefWidth="117.0" text="Save">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="25.0" layoutY="77.0" mnemonicParsing="false" onAction="#doFetch" prefHeight="28.0" prefWidth="117.0" text="Fetch">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="25.0" layoutY="181.0" mnemonicParsing="false" onAction="#doUpdate" prefHeight="28.0" prefWidth="117.0" text="Update">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#doNew" prefHeight="28.0" prefWidth="117.0" text="New">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="25.0" layoutY="232.0" mnemonicParsing="false" onAction="#doClose" prefHeight="28.0" prefWidth="117.0" text="Close">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font>
+            </Button>
+         </children>
+         <effect>
+            <Blend />
+         </effect>
+      </Pane>
+      <ImageView fitHeight="59.0" fitWidth="69.0" layoutX="36.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblMsg" layoutX="323.0" layoutY="606.0" prefHeight="17.0" prefWidth="195.0" />
+   </children>
+</AnchorPane>
