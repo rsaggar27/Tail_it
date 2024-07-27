@@ -4,6 +4,7 @@ module com.example.tail_it {
     requires java.sql;
 
     requires com.dlsc.formsfx;
+    requires jdk.jdi;
 
     opens com.example.tail_it to javafx.fxml;
     exports com.example.tail_it;
@@ -28,6 +29,12 @@ module com.example.tail_it {
 
     exports com.example.tail_it.show_worker to javafx.fxml;
     opens com.example.tail_it.show_worker;
+
+    exports com.example.tail_it.order_delivery to javafx.fxml;
+    opens com.example.tail_it.order_delivery;
+
+    exports com.example.tail_it.dashboard to javafx.fxml;
+    opens com.example.tail_it.dashboard;
 
 
 }

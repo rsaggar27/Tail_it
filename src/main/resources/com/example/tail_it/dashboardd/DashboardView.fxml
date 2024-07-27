@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="901.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tail_it.dashboard.DashboardController">
+   <children>
+      <AnchorPane prefHeight="86.0" prefWidth="1440.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="358.0" layoutY="9.0" prefHeight="59.0" prefWidth="612.0" text="we sew dreams...." textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Condensed Medium" size="46.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutY="1.0" prefHeight="900.0" prefWidth="343.0" style="-fx-background-color: gray;">
+         <children>
+            <Button layoutX="33.0" layoutY="159.0" mnemonicParsing="false" onAction="#takeOrders" prefHeight="52.0" prefWidth="266.0" text="Take Orders" textAlignment="RIGHT">
+               <font>
+                  <Font name="Poppins Medium" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="229.0" mnemonicParsing="false" onAction="#receiveOrders" prefHeight="52.0" prefWidth="266.0" text="Receive Orders" textAlignment="RIGHT">
+               <font>
+                  <Font name="Poppins Medium" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="301.0" mnemonicParsing="false" onAction="#deliverOrders" prefHeight="52.0" prefWidth="266.0" text="Deliver Orders" textAlignment="RIGHT">
+               <font>
+                  <Font name="Poppins Medium" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="370.0" mnemonicParsing="false" onAction="#MeasurementXplorer" prefHeight="52.0" prefWidth="266.0" text="Measurement Xplorer" textAlignment="RIGHT">
+               <font>
+                  <Font name="Poppins Medium" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="440.0" mnemonicParsing="false" onAction="#addCustomers" prefHeight="52.0" prefWidth="266.0" text="Add Customers" textAlignment="RIGHT">
+               <font>
+                  <Font name="Poppins Medium" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="508.0" mnemonicParsing="false" onAction="#addWorkers" prefHeight="52.0" prefWidth="266.0" text="Add Workers" textAlignment="RIGHT">
+               <font>
+                  <Font name="Poppins Medium" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="577.0" mnemonicParsing="false" onAction="#workerDetails" prefHeight="52.0" prefWidth="266.0" text="Worker Details " textAlignment="RIGHT">
+               <font>
+                  <Font name="Poppins Medium" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <PieChart fx:id="pieChartView" layoutX="385.0" layoutY="294.0" prefHeight="345.0" prefWidth="445.0" />
+      <LineChart fx:id="lineChartView" layoutX="868.0" layoutY="271.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label layoutX="458.0" layoutY="131.0" prefHeight="87.0" prefWidth="870.0" text="Welcome to the Dashboard" textAlignment="CENTER">
+         <font>
+            <Font name="PP Telegraf Ultrabold" size="60.0" />
+         </font>
+      </Label>
+      <Label layoutX="60.0" layoutY="26.0" prefHeight="96.0" prefWidth="216.0" text="Tail It" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="PP Telegraf Regular" size="75.0" />
+         </font>
+      </Label>
+      <AnchorPane blendMode="MULTIPLY" layoutX="402.0" layoutY="744.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="41.0" layoutY="19.0" text="Order Placed" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlaced" layoutX="115.0" layoutY="65.0" prefHeight="34.0" prefWidth="0.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane blendMode="MULTIPLY" layoutX="759.0" layoutY="741.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="30.0" layoutY="19.0" text="Order Received" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblReceived" layoutX="111.0" layoutY="68.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane blendMode="MULTIPLY" layoutX="1109.0" layoutY="743.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="28.0" layoutY="19.0" text="Order Delivered" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDelivered" layoutX="120.0" layoutY="64.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="PP Telegraf Regular" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

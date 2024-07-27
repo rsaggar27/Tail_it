@@ -1,5 +1,9 @@
 package com.example.tail_it.measurement_explorer;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,10 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -42,6 +43,9 @@ public class MeasurementExplorerController {
     @FXML
     private ComboBox<String> worker;
 
+    @FXML
+    private Label lblMsg;
+
     ObservableList<MeasureBean> getRecordsMob(){
         ObservableList<MeasureBean>arr= FXCollections.observableArrayList();
 
@@ -49,7 +53,7 @@ public class MeasurementExplorerController {
         try{
            stmt=con.prepareStatement("select * from measurements where mobile=?");
            stmt.setString(1,mobile.getText());
-
+           res=stmt.executeQuery();
 
             while(res.next())
             {
@@ -70,9 +74,36 @@ public class MeasurementExplorerController {
         return arr;
     }
 
+
+    public void writeExcel() throws Exception{
+        Writer writer = null;
+        try {
+            File file = new File("Measurements_Excel.csv");
+            writer = new BufferedWriter(new FileWriter(file));
+            String text="Order Id,Mobile,Dress,DOO,DOD,Worker,Measurements\n";
+            writer.write(text);
+            for (MeasureBean p : getRecords())
+            {
+                text = p.getOrderid()+ "," + p.getMobile()+ ","+p.getDress() +","+ p.getDoo()+ "," +p.getDod()+","+p.getWorker()+","+p.getMeasurements()+"\n";
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+//            assert writer != null;
+            writer.flush();
+            writer.close();
+        }
+    }
     @FXML
     void doExport(ActionEvent event) {
-
+        try{
+            writeExcel();
+            lblMsg.setText("Exported Succesfully");
+        }catch(Exception exp){
+            exp.printStackTrace();
+        }
     }
 
     ObservableList<MeasureBean> getRecords(){
@@ -140,16 +171,46 @@ public class MeasurementExplorerController {
         return arr;
     }
 
-
-
-
     @FXML
     void doFetchMob(ActionEvent event) {
+        TableColumn<MeasureBean, String> order_idC=new TableColumn<MeasureBean, String>("Order Id");//kuch bhi
+        order_idC.setCellValueFactory(new PropertyValueFactory<>("orderid"));
+        order_idC.setMinWidth(70);
 
+        TableColumn<MeasureBean, String> mobileC=new TableColumn<MeasureBean, String>("Mobile");//kuch bhi
+        mobileC.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+        mobileC.setMinWidth(100);
+
+        TableColumn<MeasureBean, String> dressC=new TableColumn<MeasureBean, String>("Dress");//kuch bhi
+        dressC.setCellValueFactory(new PropertyValueFactory<>("dress"));
+        dressC.setMinWidth(100);
+
+        TableColumn<MeasureBean, Date> dooC=new TableColumn<MeasureBean, Date>("Date of Order");//kuch bhi
+        dooC.setCellValueFactory(new PropertyValueFactory<>("doo"));
+        dooC.setMinWidth(100);
+
+
+        TableColumn<MeasureBean, String> workC=new TableColumn<MeasureBean, String>("Worker");//kuch bhi
+        workC.setCellValueFactory(new PropertyValueFactory<>("worker"));
+        workC.setMinWidth(100);
+
+        TableColumn<MeasureBean, String> dodC=new TableColumn<MeasureBean, String>("Date of Delivery");//kuch bhi
+        dodC.setCellValueFactory(new PropertyValueFactory<>("dod"));
+        dodC.setMinWidth(100);
+
+        TableColumn<MeasureBean, String> measC=new TableColumn<MeasureBean, String>("Measurements");//kuch bhi
+        measC.setCellValueFactory(new PropertyValueFactory<>("measurements"));
+        measC.setMinWidth(100);
+
+        tableView.getColumns().addAll(order_idC,mobileC,dressC,dooC,workC,dodC,measC);
+        tableView.setItems(null);
+        tableView.setItems(getRecordsMob());
     }
 
     @FXML
     void doFetchSW(ActionEvent event) {
+        tableView.getColumns().clear();
+
         TableColumn<MeasureBean, String> order_idC=new TableColumn<MeasureBean, String>("Order Id");//kuch bhi
         order_idC.setCellValueFactory(new PropertyValueFactory<>("orderid"));
         order_idC.setMinWidth(70);
