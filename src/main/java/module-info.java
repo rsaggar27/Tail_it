@@ -5,6 +5,8 @@ module com.example.tail_it {
 
     requires com.dlsc.formsfx;
     requires jdk.jdi;
+    requires java.mail;
+    requires activation;
 
     opens com.example.tail_it to javafx.fxml;
     exports com.example.tail_it;

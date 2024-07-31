@@ -19,8 +19,8 @@ public class HelloApplication extends Application {
 //        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("order_deliveryy/OrderDeliveryView.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboardd/DashboardView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
-        stage.setTitle("Hello!");
+        stage.setResizable(false);
+        stage.setTitle("Tail It");
         stage.setScene(scene);
         stage.show();
     }

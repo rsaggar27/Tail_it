@@ -112,7 +112,7 @@
                   <Font name="Poppins Medium" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="25.0" layoutY="232.0" mnemonicParsing="false" onAction="#doClose" prefHeight="28.0" prefWidth="117.0" text="Close">
+            <Button fx:id="closeButton" layoutX="25.0" layoutY="232.0" mnemonicParsing="false" onAction="#doClose" prefHeight="28.0" prefWidth="117.0" text="Close">
                <font>
                   <Font name="Poppins Medium" size="13.0" />
                </font>

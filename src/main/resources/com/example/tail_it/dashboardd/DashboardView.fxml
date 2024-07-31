@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="901.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tail_it.dashboard.DashboardController">
@@ -58,16 +59,8 @@
             </Button>
          </children>
       </AnchorPane>
-      <PieChart fx:id="pieChartView" layoutX="385.0" layoutY="294.0" prefHeight="345.0" prefWidth="445.0" />
-      <LineChart fx:id="lineChartView" layoutX="868.0" layoutY="271.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </LineChart>
-      <Label layoutX="458.0" layoutY="131.0" prefHeight="87.0" prefWidth="870.0" text="Welcome to the Dashboard" textAlignment="CENTER">
+      <PieChart fx:id="pieChartView" layoutX="387.0" layoutY="472.0" prefHeight="367.0" prefWidth="445.0" />
+      <Label layoutX="474.0" layoutY="131.0" prefHeight="87.0" prefWidth="870.0" text="Welcome to the Dashboard" textAlignment="CENTER">
          <font>
             <Font name="PP Telegraf Ultrabold" size="60.0" />
          </font>
@@ -77,47 +70,56 @@
             <Font name="PP Telegraf Regular" size="75.0" />
          </font>
       </Label>
-      <AnchorPane blendMode="MULTIPLY" layoutX="402.0" layoutY="744.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
+      <AnchorPane blendMode="MULTIPLY" layoutX="416.0" layoutY="258.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
          <children>
-            <Label layoutX="41.0" layoutY="19.0" text="Order Placed" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="41.0" layoutY="22.0" text="Order Placed" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="PP Telegraf Regular" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="lblPlaced" layoutX="115.0" layoutY="65.0" prefHeight="34.0" prefWidth="0.0" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lblPlaced" layoutX="108.0" layoutY="55.0" prefHeight="34.0" prefWidth="101.0" text="0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="PP Telegraf Regular" size="26.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane blendMode="MULTIPLY" layoutX="759.0" layoutY="741.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
+      <AnchorPane blendMode="MULTIPLY" layoutX="773.0" layoutY="255.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
          <children>
-            <Label layoutX="30.0" layoutY="19.0" text="Order Received" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="30.0" layoutY="22.0" text="Order Received" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="PP Telegraf Regular" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="lblReceived" layoutX="111.0" layoutY="68.0" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lblReceived" layoutX="102.0" layoutY="58.0" prefHeight="34.0" prefWidth="73.0" text="0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="PP Telegraf Regular" size="26.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane blendMode="MULTIPLY" layoutX="1109.0" layoutY="743.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
+      <AnchorPane blendMode="MULTIPLY" layoutX="1123.0" layoutY="257.0" prefHeight="118.0" prefWidth="242.0" style="-fx-background-color: gray;">
          <children>
-            <Label layoutX="28.0" layoutY="19.0" text="Order Delivered" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="28.0" layoutY="21.0" text="Order Delivered" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="PP Telegraf Regular" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="lblDelivered" layoutX="120.0" layoutY="64.0" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lblDelivered" layoutX="104.0" layoutY="55.0" prefHeight="34.0" prefWidth="94.0" text="0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="PP Telegraf Regular" size="26.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
+      <BarChart fx:id="barChartView" layoutX="884.0" layoutY="452.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Line endX="509.4130859375" layoutX="352.0" layoutY="459.0" startX="509.41314697265625" startY="394.703125" />
    </children>
 </AnchorPane>

@@ -4,9 +4,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
+
+import javafx.scene.chart.*;
 
 import com.example.tail_it.sql_connection.MySQLConnectionKlass;
 import javafx.collections.FXCollections;
@@ -16,12 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import com.example.tail_it.HelloApplication;
+import javafx.stage.StageStyle;
 
 public class DashboardController {
 
@@ -41,7 +40,8 @@ public class DashboardController {
     private Label lblReceived;
 
     @FXML
-    private LineChart<?, ?> lineChartView;
+    private BarChart<String, Integer> barChartView;
+
 
     @FXML
     private PieChart pieChartView;
@@ -52,9 +52,13 @@ public class DashboardController {
             Stage stage=new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("measurement_explorerr/MeasurementExplorerView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Hello!");
+            stage.setTitle("Measurement Xplorer");
             stage.setScene(scene);
+            stage.setResizable(false);
+//            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+
+
         }catch(Exception exp){
             System.out.println(exp.getMessage());
         }
@@ -62,32 +66,92 @@ public class DashboardController {
 
     @FXML
     void addCustomers(ActionEvent event) {
-
+        try{
+            Stage stage=new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("customer_enrollmentt/customerEnrollmentView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Customer Enrollment");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
     }
 
     @FXML
     void addWorkers(ActionEvent event) {
-
+        try{
+            Stage stage=new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("worker_enrollmentt/WorkerEnrollmentView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Worker Enrollment");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
     }
 
     @FXML
     void deliverOrders(ActionEvent event) {
-
+        try{
+            Stage stage=new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("order_deliveryy/OrderDeliveryView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Deliver Orders");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
     }
 
     @FXML
     void receiveOrders(ActionEvent event) {
-
+        try{
+            Stage stage=new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ready_productss/ReadyProductsView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Receive Orders");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
     }
 
     @FXML
     void takeOrders(ActionEvent event) {
-
+        try{
+            Stage stage=new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("measurementt/MeasurementView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Take Orders!");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
     }
 
     @FXML
     void workerDetails(ActionEvent event) {
-
+        try{
+            Stage stage=new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("show_workerr/ShowWorkerView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Worker Details");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
     }
 
     PreparedStatement stmt;
@@ -143,10 +207,80 @@ public class DashboardController {
             pieChartView.setTitle("Dresses");
     }
 
-    void doFetchLine(){
+    Map<String, Integer>  workerCountMap = new HashMap<>();
+    PreparedStatement stmt3;
+    void doFetchBar(){
+        try{
+            stmt3=con.prepareStatement("select worker, count(worker) as count_worker from measurements group by worker");
+            ResultSet res=stmt3.executeQuery();
+
+            while(res.next()){
+                String worker = res.getString("worker");
+                int count = res.getInt("count_worker");
+                System.out.println(worker +" "+ count);
+                workerCountMap.put(worker, count);
+            }
+
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
+
+        //creating the data
+        XYChart.Series<String,Integer> data= new XYChart.Series<>();
+        data.setName("Worker Data");
+
+        for (Map.Entry<String, Integer> entry : workerCountMap.entrySet()){
+            data.getData().add(new XYChart.Data<String,Integer>(entry.getKey(),entry.getValue()));
+        }
+
+        barChartView.getData().add(data);
 
     }
 
+    void doFetchOrder1(){
+        try{
+            stmt = con.prepareStatement("select count(pstatus) as count_plc from measurements where pstatus=1");
+            ResultSet res=stmt.executeQuery();
+
+
+            if(res.next()){
+//                System.out.println(res.getString("count_plc"));
+                lblPlaced.setText(res.getString("count_plc"));
+            }
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
+    }
+
+    void doFetchOrder2(){
+        try{
+            stmt = con.prepareStatement("select count(pstatus) as count_plc from measurements where pstatus=2");
+            ResultSet res=stmt.executeQuery();
+
+
+            if(res.next()){
+//                System.out.println(res.getString("count_plc"));
+                lblReceived.setText(res.getString("count_plc"));
+            }
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
+    }
+
+    void doFetchOrder3(){
+        try{
+            stmt = con.prepareStatement("select count(pstatus) as count_plc from measurements where pstatus=3");
+            ResultSet res=stmt.executeQuery();
+
+
+            if(res.next()){
+//                System.out.println(res.getString("count_plc"));
+                lblDelivered.setText(res.getString("count_plc"));
+            }
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+        }
+    }
 
 
     Connection con;
@@ -160,7 +294,10 @@ public class DashboardController {
             System.out.println("Connection done !!");
 
         doFetchPie();
-        doFetchLine();
+        doFetchBar();
+        doFetchOrder3();
+        doFetchOrder1();
+        doFetchOrder2();
     }
 
 }
